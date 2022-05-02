@@ -1,6 +1,5 @@
 #include <iostream>
-#include "headers/vec3.h"
-#include "headers/color.h"
+#include "include/vec3.h"
 using namespace std;
 
 int main() {
@@ -17,7 +16,7 @@ int main() {
             auto b = 0.25;
 
             color pixel_color(r,g,b);
-            write_color(cout, pixel_color);
+            cout << pixel_color <<endl;
         }
     }
 
