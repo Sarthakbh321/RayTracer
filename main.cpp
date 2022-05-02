@@ -1,4 +1,6 @@
 #include <iostream>
+#include "headers/vec3.h"
+#include "headers/color.h"
 using namespace std;
 
 int main() {
@@ -14,11 +16,8 @@ int main() {
             auto g = double(j) / (IMAGE_HEIGHT - 1);
             auto b = 0.25;
 
-            int ir = static_cast<int>(255 * r);
-            int ig = static_cast<int>(255 * g);
-            int ib = static_cast<int>(255 * b);
-
-            cout << ir << " " << ig << " " << ib << "\n";
+            color pixel_color(r,g,b);
+            write_color(cout, pixel_color);
         }
     }
 
