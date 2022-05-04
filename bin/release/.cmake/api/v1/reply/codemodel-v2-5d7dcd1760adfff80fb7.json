@@ -6,7 +6,7 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"jsonFile" : "directory-.-Release-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.22"
@@ -19,7 +19,7 @@
 					]
 				}
 			],
-			"name" : "Debug",
+			"name" : "Release",
 			"projects" : 
 			[
 				{
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Ray_Tracing::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Ray_Tracing-Debug-3b823b9c22479a5e58fd.json",
+					"jsonFile" : "target-Ray_Tracing-Release-4f2039594b7387a89f3a.json",
 					"name" : "Ray_Tracing",
 					"projectIndex" : 0
 				}
@@ -49,7 +49,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/sarthakbharadwaj/Documents/Projects/Ray Tracing/bin/debug",
+		"build" : "/Users/sarthakbharadwaj/Documents/Projects/Ray Tracing/bin/release",
 		"source" : "/Users/sarthakbharadwaj/Documents/Projects/Ray Tracing"
 	},
 	"version" : 
