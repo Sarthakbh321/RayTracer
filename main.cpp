@@ -4,20 +4,28 @@
 #include "include/color.h"
 using namespace std;
 
-bool hit_sphere(const point3& center, double radius, const ray& r) {
+double hit_sphere(const point3& center, double radius, const ray& r) {
     vec3 oc = r.origin() - center;
     auto a = dot(r.direction(), r.direction());
     auto b = 2 * dot(r.direction(), oc);
     auto c = dot(oc, oc) - radius*radius;
 
     auto discriminant = b*b - 4*a*c;
-    return discriminant > 0;
+
+    if(discriminant < 0) {
+        return -1.0;
+    } else {
+        return (-b - sqrt(discriminant)) / 2.0 * a;
+    }
 }
 
 color ray_color(const ray& r) {
-    if(hit_sphere(point3(0, 0, -1), 0.5, r)) {
-        return color(1.0, 0, 0);
+    auto hit_point = hit_sphere(point3(0, 0, -1), 0.5, r);
+    if(hit_point > 0.0) {
+        vec3 NORMAL = unit_vector(r.at(hit_point) - vec3(0, 0, -1));
+        return 0.5 * (color(NORMAL.x()+1, NORMAL.y()+1, NORMAL.z()+1));
     }
+
     vec3 unit_dir = unit_vector(r.direction());
     auto t = 0.5*(unit_dir.y() + 1.0); // denormalizing the vector
 
