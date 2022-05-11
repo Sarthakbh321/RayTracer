@@ -3,15 +3,14 @@
 #include "include/ray.h"
 #include "include/color.h"
 #include "include/sphere.h"
+#include "include/hittable_list.h"
 using namespace std;
 
 
-color ray_color(const ray& r) {
-    sphere sph(point3(0, 0, -1), 0.5);
-    hit_record sph_hit;
-    if(sph.hit(r, 0, 100, sph_hit)) {
-        vec3 NORMAL = unit_vector(sph_hit.p - vec3(0, 0, -1));
-        return 0.5 * (color(NORMAL.x()+1, NORMAL.y()+1, NORMAL.z()+1));
+color ray_color(const ray& r, const hittable& world) {
+    hit_record rec;
+    if(world.hit(r, 0, INT_MAX, rec)) {
+        return 0.5 * (rec.normal + color(1,1,1));
     }
 
     vec3 unit_dir = unit_vector(r.direction());
@@ -25,6 +24,12 @@ int main() {
     const auto ASPECT_RATIO = 16.0 / 9.0;
     const int IMAGE_WIDTH = 400;
     const int IMAGE_HEIGHT = static_cast<int>(IMAGE_WIDTH / ASPECT_RATIO);
+
+    // World
+    hittable_list world;
+    world.add(make_shared<sphere>(point3(0, 0, -1), 0.5));
+    world.add(make_shared<sphere>(point3(0, -100.5, -1), 100));
+
 
     // CAMERA
     auto VIEWPORT_HEIGHT = 2.0;
@@ -46,7 +51,7 @@ int main() {
             auto v = double(j) / (IMAGE_HEIGHT - 1);
 
             ray r(origin, lower_left_corner + u*horizontal + v*vertical - origin);
-            color pixel_color = ray_color(r);
+            color pixel_color = ray_color(r, world);
             write_color(cout, pixel_color);
         }
     }
