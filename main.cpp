@@ -1,6 +1,6 @@
+#include "include/raytracer.h"
 #include <iostream>
-#include "include/vec3.h"
-#include "include/ray.h"
+
 #include "include/color.h"
 #include "include/sphere.h"
 #include "include/hittable_list.h"
@@ -9,7 +9,7 @@ using namespace std;
 
 color ray_color(const ray& r, const hittable& world) {
     hit_record rec;
-    if(world.hit(r, 0, INT_MAX, rec)) {
+    if(world.hit(r, 0, infinity, rec)) {
         return 0.5 * (rec.normal + color(1,1,1));
     }
 
