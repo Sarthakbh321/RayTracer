@@ -10,9 +10,9 @@ void write_color(std::ostream &out, color pixel_color, int samples_per_pixel) {
 
     // Divide colors by number of samples
     auto scale = 1.0 / samples_per_pixel;
-    r *= scale;
-    g *= scale;
-    b *= scale;
+    r = sqrt(r * scale);
+    g = sqrt(g * scale);
+    b = sqrt(b * scale);
 
     // Output values clamped between [0, 256)
     out << static_cast<int>(256 * clamp(r, 0, 0.999)) << " "
