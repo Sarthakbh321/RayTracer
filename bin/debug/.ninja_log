@@ -1,3 +1,5 @@
 # ninja log v5
 1	273	1652292763782985859	CMakeFiles/Ray_Tracing.dir/main.cpp.o	2b90e0ed67be84c9
 273	301	1652292763812637722	Ray_Tracing	56be23e1a162b7b3
+1	509	1652387189012856371	CMakeFiles/Ray_Tracing.dir/main.cpp.o	2b90e0ed67be84c9
+510	565	1652387189073661724	Ray_Tracing	56be23e1a162b7b3
