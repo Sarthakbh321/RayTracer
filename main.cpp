@@ -56,7 +56,7 @@ int main() {
 
 
     // CAMERA
-    camera cam;
+    camera cam(point3(-2,2,1), point3(0,0,-1), vec3(0,1,0), 90.0, ASPECT_RATIO);
 
     cout << "P3\n" << IMAGE_WIDTH << " " << IMAGE_HEIGHT << "\n255\n";
 
