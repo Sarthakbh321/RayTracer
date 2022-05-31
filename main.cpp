@@ -6,6 +6,7 @@
 #include "include/hittable_list.h"
 #include "include/camera.h"
 #include "include/materials.h"
+#include "include/scene.h"
 using namespace std;
 
 
@@ -38,7 +39,7 @@ int main() {
     const auto ASPECT_RATIO = 16.0 / 9.0;
     const int IMAGE_WIDTH = 400;
     const int IMAGE_HEIGHT = static_cast<int>(IMAGE_WIDTH / ASPECT_RATIO);
-    const int SAMPLES_PER_PIXEL = 100;
+    const int SAMPLES_PER_PIXEL = 500;
     const int MAX_DEPTH = 50;
 
     // World
@@ -54,9 +55,14 @@ int main() {
     world.add(make_shared<sphere>(point3(1, 0, -1), 0.5, material_right));
     world.add(make_shared<sphere>(point3(0, -100.5, -1), 100, material_ground));
 
+    world = scene().random_scene();
+
 
     // CAMERA
-    camera cam(point3(-2,2,1), point3(0,0,-1), vec3(0,1,0), 90.0, ASPECT_RATIO);
+    point3 lookfrom(13,2,3);
+    point3 lookat(0,0,0);
+    vec3 vup(0,1,0);
+    camera cam(lookfrom, lookat, vup, 20.0, ASPECT_RATIO);
 
     cout << "P3\n" << IMAGE_WIDTH << " " << IMAGE_HEIGHT << "\n255\n";
 
