@@ -39,7 +39,7 @@ int main() {
     const auto ASPECT_RATIO = 16.0 / 9.0;
     const int IMAGE_WIDTH = 400;
     const int IMAGE_HEIGHT = static_cast<int>(IMAGE_WIDTH / ASPECT_RATIO);
-    const int SAMPLES_PER_PIXEL = 500;
+    const int SAMPLES_PER_PIXEL = 100;
     const int MAX_DEPTH = 50;
 
     // World
@@ -55,14 +55,17 @@ int main() {
     world.add(make_shared<sphere>(point3(1, 0, -1), 0.5, material_right));
     world.add(make_shared<sphere>(point3(0, -100.5, -1), 100, material_ground));
 
-    world = scene().random_scene();
+//    world = scene().random_scene();
 
 
     // CAMERA
-    point3 lookfrom(13,2,3);
-    point3 lookat(0,0,0);
+    point3 lookfrom(3,3,2);
+    point3 lookat(0,0,-1);
     vec3 vup(0,1,0);
-    camera cam(lookfrom, lookat, vup, 20.0, ASPECT_RATIO);
+    auto dist_to_focus = (lookfrom-lookat).length();
+    auto aperture = 2.0;
+
+    camera cam(lookfrom, lookat, vup, 20.0, ASPECT_RATIO, aperture, dist_to_focus);
 
     cout << "P3\n" << IMAGE_WIDTH << " " << IMAGE_HEIGHT << "\n255\n";
 
